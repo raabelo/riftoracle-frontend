@@ -46,7 +46,7 @@ const Home = () => {
 
     const conteudo = [
         {
-            nome: "paiN Gaming",
+            nome: "pain Gaming",
             icone: "https://thesquad.com.br/wp-content/uploads/2019/07/pain-logo-capa.png",
             pontos: 152.5,
         },
