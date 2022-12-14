@@ -1,0 +1,38 @@
+.bm-wrapper {
+    padding: 10px;
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-bottom: 5px solid;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.bm-wrapper > p {
+    cursor: pointer;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 15px;
+    color: var(--color-white);
+    font-weight: bold;
+    font-size: var(--font-size-normal);
+    transition: all 0.1s;
+
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+.bm-wrapper > p:hover {
+    transition: all 0.1s;
+    background-color: var(--color-darkgrey);
+}
+
+@media only screen and (max-width: 769px) {
+    /* For mobile: */
+    .bm-wrapper {
+        width: 60vw;
+    }
+}
+

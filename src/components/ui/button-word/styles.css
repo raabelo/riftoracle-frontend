@@ -1,0 +1,30 @@
+.bw-wrapper {
+    border-radius: 500px;
+    padding: 2.5%;
+    padding-left: 10%;
+    padding-right: 10%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.1s;
+}
+.bw-wrapper:active {
+    opacity: 0.5;
+    transition: all 0.1s;
+}
+.bw-wrapper:hover {
+    /* transform: scale(1.01); */
+    transition: all 0.1s;
+}
+
+.bw-wrapper > p {
+    cursor: pointer;
+    font-weight: bold;
+    font-family: var(--font-primary);
+
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}

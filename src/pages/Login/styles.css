@@ -1,0 +1,160 @@
+.div-bg-img-login {
+    background-image: url("../../assets/img/background/yasuo_lux.jpg");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-detail-hexcircle_out {
+    width: 30%;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    border: 1px solid var(--color-lightblack);
+    position: absolute;
+}
+
+.div-detail-hexcircle_in {
+    border: 1px dashed transparent;
+    border-top: 3.5px solid var(--color-details);
+    border-bottom: 3.5px solid var(--color-details);
+    width: 29.5%;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    position: absolute;
+    -webkit-animation: spin 5s linear infinite;
+    animation: spin 5s linear infinite;
+}
+
+.div-container-login {
+    text-align: center;
+    height: fit-content;
+    background-color: var(--color-white);
+    margin-left: 12.5vw;
+    margin-right: 12.5vw;
+    border-radius: 15px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 5vh;
+    box-sizing: border-box;
+    transition: all 1s;
+}
+
+.div-container-login > div {
+    margin-left: auto;
+    margin-right: 0;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-container-login > div > input {
+    margin-left: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: var(--color-white);
+    border: 1px solid var(--color-grey);
+    border-radius: 100%;
+    aspect-ratio: 1;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 9px;
+    display: inline-block;
+    position: relative;
+}
+
+.div-container-login > div > input:checked {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: var(--color-details);
+    border: 1px solid var(--color-grey);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05),
+        inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+}
+
+.div-container-login > input {
+    caret-color: var(--color-lightblack);
+    border-radius: 50px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-width: 0;
+    background-color: var(--color-grey);
+}
+.div-container-login > input:focus {
+    outline: none;
+}
+
+.div-container-login > label {
+    text-align: left;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    font-size: var(--font-size-normal);
+    color: var(--color-lightblack);
+    font-weight: bold;
+}
+
+.div-container-login > .p-title-login {
+    font-size: var(--font-size-xxx-large);
+    font-weight: bold;
+    margin-bottom: 3vh;
+}
+
+.div-container-login > .btn-continue-login {
+    cursor: pointer;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 500px;
+    border-width: 0;
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+    font-size: var(--font-size-xx-large);
+    background-color: var(--color-details);
+    color: var(--color-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1;
+    height: 25px;
+    padding: 15px;
+    transition: all 1s;
+}
+
+.div-container-login > .btn-continue-login:hover {
+    transition: all 1s;
+    aspect-ratio: 0;
+}
+
+.div-container-login > .btn-continue-login::before {
+    font-size: var(--font-size-small);
+    font-family: var(--font-primary);
+    font-weight: bold;
+    content: "CONTINUAR";
+    text-indent: -9999px;
+    letter-spacing: 0px;
+    opacity: 0;
+    transition: letter-spacing 0.1s ease-out, opacity 0.1s ease-out;
+}
+
+.div-container-login > .btn-continue-login:hover::before {
+    transition: letter-spacing 0.1s ease-out, opacity 0.1s ease-out;
+    margin-left: 5px;
+    margin-right: 10px;
+    text-indent: 0px;
+    letter-spacing: 1px;
+    opacity: 1;
+}
+
+.div-container-login > .p-btn-footer-login {
+    cursor: pointer;
+    letter-spacing: 1px;
+    padding-top: 1vh;
+    font-size: var(--font-size-small);
+    font-weight: bold;
+    color: var(--color-lightblack);
+}

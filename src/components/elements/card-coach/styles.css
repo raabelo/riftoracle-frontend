@@ -1,0 +1,126 @@
+.cc-wrapper {
+    max-width: 210px;
+    max-height: 270px;
+
+    width: 210px;
+
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+.cc-flip-card {
+    background-color: transparent;
+    height: 270px;
+    perspective: 1500px;
+    cursor: pointer;
+}
+
+.cc-flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+}
+
+.cc-flip-card:active .cc-flip-card-inner {
+    transform: rotateY(-180deg);
+}
+
+.cc-flip-card-front,
+.cc-flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.cc-flip-card-front {
+    overflow: hidden;
+    border-radius: 15px;
+    color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-lightblack);
+}
+
+.cc-flip-card-back {
+    flex-direction: column;
+    display: flex;
+    overflow: hidden;
+    border-radius: 15px;
+    background-color: var(--color-details);
+    cursor: pointer;
+    color: var(--color-white);
+    transform: rotateY(180deg);
+}
+
+.cc-flip-card-front > .cc-content {
+    flex: 8.9;
+    box-sizing: border-box;
+    margin: 7.5px;
+    display: flex;
+    
+    background-size: cover; /* <------ */
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.cc-flip-card-front > .cc-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.2);
+    flex: 1.1;
+}
+
+.cc-flip-card-front > .cc-content > div {
+    margin-top: 100%;
+}
+.cc-flip-card-front > .cc-content > div:first-child {
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: var(--color-details);
+    color: var(--color-white);
+    width: fit-content;
+    height: 25px;
+    padding: 1px;
+    padding-left: 20px;
+    padding-right: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+.cc-flip-card-front > .cc-content > div:last-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    padding: 1px;
+    margin-left: -95px;
+    height: 25px;
+    width: 25px;
+    background-color: var(--color-white);
+}
+.cc-flip-card-front > .cc-content > div > p {
+    cursor: pointer;
+}
+.cc-flip-card-front > .cc-footer > p {
+    cursor: pointer;
+}
+
+.cc-flip-card-back > .cc-content {
+    flex: 8.9;
+    display: flex;
+    flex-direction: row;
+    padding: 7.5px;
+    padding-bottom: 0;
+}
