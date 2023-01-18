@@ -2,13 +2,13 @@ const backend = () => {
     let link;
 
     //local
-    // link = "http://localhost:62209/"
+    link = "http://localhost:3001"
 
     //teste
-    link = "https://inspeuberababack.directy.com.br/";
+    // link = "https://teste.com.br";
 
     //produção
-    // link = ""
+    // link = "https://prod.com.br";
 
     return link;
 };

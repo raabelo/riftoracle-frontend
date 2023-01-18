@@ -20,26 +20,24 @@ import {
     faPlus,
     faWallet,
     faHeadset,
-    faGhost
+    faGhost,
 } from "@fortawesome/free-solid-svg-icons";
 
 // components
 import ButtonIcon from "../../components/ui/button-icon";
 import ButtonWord from "../../components/ui/button-word";
-import ButtonMenu from "../../components/ui/button-menu";
 import SwitchIcon from "../../components/ui/switch-icon";
 import SwitchWord from "../../components/ui/switch-word";
 import TableScore from "../../components/ui/table-score";
 import ButtonArt from "../../components/ui/button-art";
-import InputSearch from "../../components/ui/input-search";
+import HeaderMenu from "../../components/elements/header-menu";
 import CardPlayer from "../../components/elements/card-player";
 import CardCoach from "../../components/elements/card-coach";
 import CardInfo from "../../components/elements/card-info";
 
 const Home = () => {
+    const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
     const [tema, setTema] = useState(JSON.parse(sessionStorage.getItem("tema")));
-
-    const [menuOpened, setMenuOpened] = useState(false);
 
     const [switchPreco, setSwitchPreco] = useState(true);
     const [abaCard, setAbaCard] = useState(false);
@@ -127,76 +125,19 @@ const Home = () => {
         },
     ];
 
-    const menuItens = [
-        {
-            nome: "início",
-        },
-        {
-            nome: "escalação",
-        },
-        {
-            nome: "competições",
-        },
-        {
-            nome: "amigos",
-        },
-        {
-            nome: "estatíticas do cblol",
-        },
-    ];
-
     useEffect(() => {
         let t = "red";
-        if (!tema) {
-            let t = "green";
-            setTema(t);
-            sessionStorage.setItem("tema", JSON.stringify(t));
-        }
         setTema(t);
+        sessionStorage.setItem("tema", JSON.stringify(t));
     }, []);
 
     return (
         <div className="home-wrapper">
             <>
-                <div className="header-menu-mobile">
-                    <img className="logo-menu-lol mobile" src={logoLOL}></img>
-                </div>
-                <input
-                    type={"checkbox"}
-                    className={"menu-hamburguer"}
-                    checked={menuOpened}
-                    onChange={() => {
-                        setMenuOpened(!menuOpened);
-                    }}
-                ></input>
-                <div
-                    className="header-menu"
-                    onClick={() => {
-                        setMenuOpened(!menuOpened);
-                    }}
-                >
-                    <div>
-                        <img src={logoLOL} className="logo-menu-lol desktop"></img>
-                        {menuItens.map((element) => {
-                            return (
-                                <ButtonMenu
-                                    key={"btnMenu-" + element.nome}
-                                    text={element.nome}
-                                    bgColor={`var(--color-${tema})`}
-                                    active={element.nome === "início" ? true : false}
-                                ></ButtonMenu>
-                            );
-                        })}
-                    </div>
-                    <div>
-                        <InputSearch
-                            text={"pesquisar..."}
-                            color="white"
-                            bgColor={"var(--color-darkgrey)"}
-                        ></InputSearch>
-                    </div>
-                </div>
+                <HeaderMenu tema={tema}></HeaderMenu>
             </>
+
+            <a href="/teste">teste</a>
 
             <CardCoach></CardCoach>
             <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
@@ -228,7 +169,7 @@ const Home = () => {
                     icon={<FontAwesomeIcon icon={faTrophy} />}
                     color={tema}
                     value={210.55}
-                    ></CardInfo>
+                ></CardInfo>
                 <CardInfo
                     title={"pts da última rodada"}
                     icon={<FontAwesomeIcon icon={faStar} />}
@@ -284,7 +225,7 @@ const Home = () => {
                     colorA={"var(--color-white)"}
                     colorB={"var(--color-lightdetails)"}
                 ></TableScore>
-                <TableScore
+                {/* <TableScore
                     team={"Corinthians"}
                     title={"CBOLÃO"}
                     dados={conteudo}
@@ -294,7 +235,7 @@ const Home = () => {
                     colorPrimary={"var(--color-lightblack)"}
                     colorA={"var(--color-white)"}
                     colorB={"var(--color-lightdetails)"}
-                ></TableScore>
+                ></TableScore> */}
             </div>
 
             <ButtonWord

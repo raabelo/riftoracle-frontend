@@ -5,12 +5,16 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles.css";
 
-import Select from "react-select";
 import toast, { Toaster } from "react-hot-toast";
+
+import Requests from "../../services/requests";
 
 // icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+
+import teamlogos from "../../assets/logos/teamLogos/teamlogos";
+import SelectorLogo from "../../components/elements/selector-logo";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -21,32 +25,62 @@ const Login = () => {
     const [senha, setSenha] = useState("");
     const [continuar, setContinuar] = useState(false);
 
-    const fraseOptions = [
-        {
-            value: "Qual o nome do seu primeiro animal de estimação?",
-            label: "Qual o nome do seu primeiro animal de estimação?",
-        },
-        {
-            value: "Em que cidade seu pai nasceu?",
-            label: "Em que cidade seu pai nasceu?",
-        },
-        {
-            value: "Qual o nome do seu professor(a) favorito?",
-            label: "Qual o nome do seu professor(a) favorito?",
-        },
-        {
-            value: "Nome do seu melhor amigo de infancia",
-            label: "Nome do seu melhor amigo de infancia",
-        },
-        {
-            value: "Qual o primeiro nome do seu primo(a) mais velho?",
-            label: "Qual o primeiro nome do seu primo(a) mais velho?",
-        },
-        {
-            value: "Em que mês do ano você fez seu primeiro pentakill?",
-            label: "Em que mês do ano você fez seu primeiro pentakill?",
-        },
-    ];
+    const [cadNome, setCadNome] = useState("");
+    const [cadEmail, setCadEmail] = useState("");
+    const [cadSenha, setCadSenha] = useState("");
+    const [cadRepSenha, setCadRepSenha] = useState("");
+
+    const [teamName, setTeamName] = useState("");
+    const [teamLogo, setTeamLogo] = useState(4);
+
+    const clearForm = () => {
+        setNome("");
+        setSenha("");
+        setContinuar(false);
+
+        setCadNome("");
+        setCadEmail("");
+        setCadSenha("");
+        setCadRepSenha("");
+    };
+
+    function somar(a, b, c) {
+        console.log()
+    }
+
+    useEffect(() => {
+        somar(5, 5, 9);
+    }, []);
+
+    const signup = async (e) => {
+        e.preventDefault();
+        console.log(e);
+        // let config = { headers: { "x-access-token": token } };
+        let object = {
+            nome: cadNome,
+            email: cadEmail,
+            senha: cadSenha,
+        };
+        if (cadSenha === cadRepSenha) {
+            await Requests.postUser(object)
+                .then((res) => {
+                    if (res.status === 200) {
+                        toast.success("Usuário cadastrado!");
+                        clearForm();
+                        setPopup(3);
+                    } else if (res.status === 409) {
+                        toast.error("Nome de usuário ou email já cadastrado");
+                    } else {
+                        toast.error("Não foi possível cadastrar o usuário");
+                    }
+                })
+                .catch((err) => {
+                    toast.error("Não foi possível cadastrar o usuário");
+                });
+        } else {
+            toast.error("As senhas não conferem");
+        }
+    };
 
     useEffect(() => {
         // toast.success("Rota cadastrada com sucesso!");
@@ -59,7 +93,7 @@ const Login = () => {
             component: (
                 <div className="col-4 div-container-login">
                     <p className="p-title-login">Iniciar sessão</p>
-                    <label>NOME DE USUÁRIO</label>
+                    <label>NOME DE USUÁRIO OU EMAIL</label>
                     <input
                         type={"email"}
                         value={nome}
@@ -76,7 +110,14 @@ const Login = () => {
                     >
                         <FontAwesomeIcon icon={faArrowRight} />
                     </button>
-                    <p className="p-btn-footer-login">NÃO POSSUO UMA CONTA</p>
+                    <p
+                        className="p-btn-footer-login"
+                        onClick={() => {
+                            setPopup(2);
+                        }}
+                    >
+                        NÃO POSSUO UMA CONTA
+                    </p>
                 </div>
             ),
         },
@@ -123,10 +164,111 @@ const Login = () => {
         {
             nome: "createUser",
             component: (
-                <div className="col-4 div-container-login">
-                    <p>Iniciar sessão</p>
-                    <input type={"email"}></input>
-                </div>
+                <form className="col-4 div-container-login" onSubmit={signup}>
+                    <p className="p-title-login">Criar conta</p>
+                    <label>NOME DE USUÁRIO</label>
+                    <input
+                        required
+                        name="nome"
+                        type={"text"}
+                        value={cadNome}
+                        onChange={(e) => {
+                            setCadNome(e.target.value);
+                        }}
+                        maxLength={25}
+                    ></input>
+                    <label>EMAIL</label>
+                    <input
+                        required
+                        name="email"
+                        type={"email"}
+                        value={cadEmail}
+                        onChange={(e) => {
+                            setCadEmail(e.target.value);
+                        }}
+                        maxLength={25}
+                    ></input>
+                    <label>SENHA</label>
+                    <input
+                        required
+                        name="senha"
+                        type={"password"}
+                        value={cadSenha}
+                        onChange={(e) => {
+                            setCadSenha(e.target.value);
+                        }}
+                        maxLength={25}
+                    ></input>
+                    <label>REPITA A SENHA</label>
+                    <input
+                        required
+                        name="repsenha"
+                        type={"password"}
+                        value={cadRepSenha}
+                        onChange={(e) => {
+                            setCadRepSenha(e.target.value);
+                        }}
+                        maxLength={25}
+                    ></input>
+                    <button type="submit" className="btn-continue-login">
+                        <FontAwesomeIcon icon={faArrowRight} />
+                    </button>
+                    <p className="p-message-footer-login">
+                        Ao criar uma conta, você concorda com nossos Termos de Uso e Política de
+                        Privacidade
+                    </p>
+                </form>
+            ),
+        },
+        {
+            nome: "createTeam",
+            component: (
+                <form className="col-4 div-container-login-team" onSubmit={signup}>
+                    <div>
+                        <p className="p-title-login">Criar time</p>
+                    </div>
+                    <div>
+                        <div style={{ paddingLeft: "5vh", paddingRight: "5vh" }}>
+                            <label>NOME DO TIME</label>
+                            <input
+                                type={"text"}
+                                value={teamName}
+                                onChange={(e) => {
+                                    setTeamName(e.target.value);
+                                }}
+                                maxLength={50}
+                            ></input>
+                            <div className="logo-selector">
+                                <SelectorLogo
+                                    icons={teamlogos}
+                                    selectedIcon={teamLogo}
+                                    setSelectedIcon={setTeamLogo}
+                                ></SelectorLogo>
+                            </div>
+                        </div>
+                        <div className="logo-container">
+                            <img
+                                src={teamlogos[teamLogo]}
+                                width={250}
+                                height={250}
+                                style={{ objectFit: "contain", padding: 10 }}
+                            ></img>
+
+                            <p className="logo-logoname">{teamName}</p>
+                            <p className="logo-username">{"fabiyear"}</p>
+                            <div className="logo-footer">
+                                <button
+                                    className="btn-continue-login"
+                                    onClick={() => {
+                                        setPopup(1);
+                                    }}
+                                >
+                                    <FontAwesomeIcon icon={faArrowRight} />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             ),
         },
     ];

@@ -1,0 +1,10 @@
+.selector-logo-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    overflow-y: auto;
+    height: 50vh;
+    transition: all 0.1s;
+}
+.selector-logo-container > .selector-logo-item {
+    transition: all 0.25s ease;
+}

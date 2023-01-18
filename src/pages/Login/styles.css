@@ -104,7 +104,8 @@
     margin-bottom: 3vh;
 }
 
-.div-container-login > .btn-continue-login {
+.div-container-login > .btn-continue-login,
+.logo-footer > .btn-continue-login {
     cursor: pointer;
     width: fit-content;
     margin-left: auto;
@@ -125,12 +126,14 @@
     transition: all 1s;
 }
 
-.div-container-login > .btn-continue-login:hover {
+.div-container-login > .btn-continue-login:hover,
+.logo-footer > .btn-continue-login:hover {
     transition: all 1s;
     aspect-ratio: 0;
 }
 
-.div-container-login > .btn-continue-login::before {
+.div-container-login > .btn-continue-login::before,
+.logo-footer > .btn-continue-login::before {
     font-size: var(--font-size-small);
     font-family: var(--font-primary);
     font-weight: bold;
@@ -141,7 +144,8 @@
     transition: letter-spacing 0.1s ease-out, opacity 0.1s ease-out;
 }
 
-.div-container-login > .btn-continue-login:hover::before {
+.div-container-login > .btn-continue-login:hover::before,
+.logo-footer > .btn-continue-login:hover::before {
     transition: letter-spacing 0.1s ease-out, opacity 0.1s ease-out;
     margin-left: 5px;
     margin-right: 10px;
@@ -157,4 +161,154 @@
     font-size: var(--font-size-small);
     font-weight: bold;
     color: var(--color-lightblack);
+    transition: all 0.2s;
+}
+.div-container-login > .p-btn-footer-login:hover {
+    color: var(--color-details);
+    transition: all 0.2s;
+}
+
+.div-container-login > .p-message-footer-login {
+    letter-spacing: 1px;
+    padding-top: 1vh;
+    font-size: var(--font-size-x-small);
+    font-weight: bold;
+    color: var(--color-lightblack);
+    transition: all 0.2s;
+}
+
+form > label {
+    padding-top: 15px;
+}
+
+.div-container-login-team {
+    text-align: center;
+    height: fit-content;
+    background-color: var(--color-white);
+    /* margin-left: 12.5vw; */
+    /* margin-right: 12.5vw; */
+    border-radius: 15px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 5vh;
+    padding-right: 0;
+    padding-left: 0;
+    box-sizing: border-box;
+    transition: all 1s;
+    min-height: 70vh;
+    min-width: 50vw;
+}
+
+.div-container-login-team > div > .p-title-login {
+    font-size: var(--font-size-xxx-large);
+    font-weight: bold;
+    margin-bottom: 3vh;
+}
+
+.div-container-login-team > div:last-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.div-container-login-team > div:last-child > div:first-child {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+}
+.div-container-login-team > div:last-child > div:last-child {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+}
+
+.div-container-login-team > div:last-child > div:last-child {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-right: 3vh;
+}
+
+.div-container-login-team > div > div > input {
+    caret-color: var(--color-lightblack);
+    border-radius: 50px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-width: 0;
+    background-color: var(--color-grey);
+}
+.div-container-login-team > div > div > input:focus {
+    outline: none;
+}
+
+.div-container-login-team > div > div > label {
+    text-align: left;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    font-size: var(--font-size-normal);
+    color: var(--color-lightblack);
+    font-weight: bold;
+}
+
+.div-detail-hexcircle_out-team {
+    width: 40%;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    border: 1px solid var(--color-lightblack);
+    position: absolute;
+}
+
+.div-detail-hexcircle_in-team {
+    border: 1px dashed transparent;
+    border-top: 3.5px solid var(--color-details);
+    border-bottom: 3.5px solid var(--color-details);
+    width: 39.45%;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    position: absolute;
+    -webkit-animation: spin 5s linear infinite;
+    animation: spin 5s linear infinite;
+}
+
+.logo-selector {
+    border-radius: 15px;
+    margin-top: 25px;
+}
+.logo-selector > p {
+    position: absolute;
+    margin-left: 10px;
+    padding-bottom: 35px;
+}
+
+.logo-logoname {
+    font-size: var(--font-size-xxx-large);
+    font-weight: bold;
+}
+.logo-username {
+    font-size: var(--font-size-normal);
+    padding-top: 5px;
+    font-weight: bold;
+}
+
+.logo-footer {
+    margin-top: 50px;
+}
+
+@media only screen and (max-width: 769px) {
+    /* For mobile: */
+    .div-container-login-team {
+        max-width: 80vw;
+    }
+
+    .div-detail-hexcircle_in-team,
+    .div-detail-hexcircle_out-team {
+        display: none;
+    }
 }

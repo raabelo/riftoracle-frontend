@@ -1,14 +1,10 @@
 import Axios from "axios";
 import api from "../environment/backend";
-const web = api + "portal";
-const app = api + "app";
-
-// const mobile = api + "app";
 
 class Requests {
-    static login = async (object) => {
+    static auth = async (object) => {
         let content;
-        await Axios.get(web + "/login", object)
+        await Axios.post(api + "/auth", object)
             .then((res) => {
                 const response = res.data;
                 content = response;
@@ -19,9 +15,23 @@ class Requests {
         return content;
     };
 
+    static postUser = async (object) => {
+        let content;
+        await Axios.post(api + "/user", object)
+            .then((res) => {
+                const response = res;
+                content = response;
+            })
+            .catch((res, err) => {
+                const response = res.response;
+                content = response;
+            });
+        return content;
+    };
+
     static putNovaSenha = async (object, config) => {
         let content;
-        await Axios.put(app + "/alterarSenha", object, config)
+        await Axios.put(api + "/alterarSenha", object, config)
             .then((res) => {
                 const response = res.data;
                 content = response;
@@ -34,7 +44,7 @@ class Requests {
 
     static forgotPass = async (object) => {
         let content;
-        await Axios.get(app + "/requerirSenha", object)
+        await Axios.get(api + "/requerirSenha", object)
             .then((res) => {
                 const response = res.data;
                 content = response;
@@ -47,7 +57,7 @@ class Requests {
 
     static getTecnicos = async (config) => {
         let content;
-        await Axios.get(web + "/usuarios/Tecnico", config)
+        await Axios.get(api + "/usuarios/Tecnico", config)
             .then((res) => {
                 const response = res.data;
                 content = response;
@@ -60,7 +70,7 @@ class Requests {
 
     static postTecnicos = async (object, config) => {
         let content;
-        await Axios.post(web + "/usuarios/Tecnico", object, config)
+        await Axios.post(api + "/usuarios/Tecnico", object, config)
             .then((res) => {
                 const response = res.data;
                 content = response;
@@ -73,7 +83,7 @@ class Requests {
 
     static putTecnicos = async (object, config) => {
         let content;
-        await Axios.put(web + "/usuarios/Tecnico", object, config)
+        await Axios.put(api + "/usuarios/Tecnico", object, config)
             .then((res) => {
                 const response = res.data;
                 content = response;
@@ -86,7 +96,7 @@ class Requests {
 
     static deleteTecnicos = async (object, config) => {
         let content;
-        await Axios.delete(web + "/usuarios/" + object.id, config)
+        await Axios.delete(api + "/usuarios/" + object.id, config)
             .then((res) => {
                 const response = res.data;
                 content = response;
@@ -99,7 +109,7 @@ class Requests {
 
     static getRotas = async (config) => {
         let content;
-        await Axios.get(web + "/rotas", config)
+        await Axios.get(api + "/rotas", config)
             .then((res) => {
                 const response = res.data;
                 content = response;
@@ -112,7 +122,7 @@ class Requests {
 
     static postRotas = async (object, config) => {
         let content;
-        await Axios.post(web + "/rotas", object, config)
+        await Axios.post(api + "/rotas", object, config)
             .then((res) => {
                 const response = res.data;
                 content = response;
@@ -125,7 +135,7 @@ class Requests {
 
     static putRotas = async (object, config) => {
         let content;
-        await Axios.put(web + "/rotas", object, config)
+        await Axios.put(api + "/rotas", object, config)
             .then((res) => {
                 const response = res.data;
                 content = response;
@@ -138,7 +148,7 @@ class Requests {
 
     static deleteRotas = async (object, config) => {
         let content;
-        await Axios.delete(web + "/rotas/" + object.id, config)
+        await Axios.delete(api + "/rotas/" + object.id, config)
             .then((res) => {
                 const response = res.data;
                 content = response;
